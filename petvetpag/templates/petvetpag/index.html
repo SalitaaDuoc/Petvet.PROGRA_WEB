@@ -1,0 +1,47 @@
+{% extends "master/base.html" %}{% block content %}
+
+<div class="container">
+  <!-- Fila 1 -->
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">Bienvenido a Petvet</h1>
+      <p class="text-center">
+        Nutrición y diversión de calidad para tus mejores amigos
+      </p>
+    </div>
+  </div>
+  <!-- Fila 2 -->
+  <div class="row">
+    <div class="col-md-4">
+      <h2>¡Explora!</h2>
+      <hr>
+      <a href="{% url 'porhacer' %}" class="btn btn-primary btn-block"
+        >Comida de animales</a
+      >
+      <hr />
+      <a href="{% url 'porhacer' %}" class="btn btn-primary btn-block"
+        >Juguetes de animales</a
+      >
+      <hr />
+      <a href="{% url 'porhacer' %}" class="btn btn-primary btn-block"
+        >Accesorios para animales</a
+      >
+      <hr />
+      <a href="{% url 'porhacer' %}" class="btn btn-primary btn-block"
+        >Servicio de veterinaria</a
+      >
+      <hr />
+    </div>
+    <div class="promotion col-md-8">
+      <h2>Promociones Especiales</h2>
+      <h6 style="color: black">
+        Registrate y recibe ofertas y descuentos en nuestros servicios.
+      </h6>
+      <br>
+      <a href="{% url 'porhacer' %}" class="btn btn-secondary">Registrarse</a>
+    </div>
+  </div>
+  </div>
+</div>
+
+{% endblock %}
