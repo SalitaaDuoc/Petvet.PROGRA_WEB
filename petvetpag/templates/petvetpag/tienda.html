@@ -8,6 +8,14 @@
 </div>
 <!-- Fila 2 -->
 <div class="row">
+  <button
+    type="button"
+    class="btn btn-success mb-4"
+    data-bs-toggle="modal"
+    data-bs-target="#addProductModal"
+  >
+    Añadir producto
+  </button>
   {% for producto in productos%}
   <div class="col-md-3 mb-4">
     <div class="card">
@@ -21,10 +29,52 @@
         <p class="card-text">Precio: ${{ producto.price }}</p>
         <p class="card-text">Stock: {{ producto.stock }}</p>
         <p class="card-text">Categoría: {{ producto.category.name }}</p>
+        <div class="d-flex justify-content-between mt-3">
+          <a href="{% url 'porhacer' %}" class="btn btn-primary">Editar</a>
+          <a href="{% url 'porhacer' %}" class="btn btn-danger">Borrar</a>
+        </div>
       </div>
     </div>
   </div>
   {% endfor %}
+</div>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="addProductModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="addProductModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addProductModalLabel">Añadir producto</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form action="{% url "product_create" %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %} {{ form.as_table }}
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 
 {% endblock %}
