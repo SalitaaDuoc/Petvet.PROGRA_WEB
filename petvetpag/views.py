@@ -46,4 +46,11 @@ def product_update(request, id):
 
 def product_delete(request, id):
     context = {}
+    try:
+        producto = product.objects.get(id=id)
+        auxProName = producto.name
+        producto.delete()
+        context['message'] = "Producto '{auxProName}' eliminado"
+    except:
+        context['message'] = "Producto no encontrado"
     return tienda(request, context)

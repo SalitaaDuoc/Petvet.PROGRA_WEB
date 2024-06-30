@@ -10,7 +10,7 @@ class category(models.Model):
 class product(models.Model):
   name = models.CharField(max_length=100)
   description = models.TextField()
-  image = models.ImageField(upload_to='media/products/')
+  image = models.ImageField(upload_to='products/')
   price = models.DecimalField(max_digits=10, decimal_places=2)
   stock = models.IntegerField()
   category = models.ForeignKey(category, on_delete=models.CASCADE)
