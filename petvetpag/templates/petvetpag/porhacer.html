@@ -1,20 +1,22 @@
-{% extends 'master/base.html' %} {% block content %}
-<div class="container">
-  <!-- Fila 1 -->
-  <div class="row">
-    <div class="col-md-12">
-      <h1 class="text-center">Esta pagina aun no existe :(</h1>
-    </div>
+{% extends 'master/base.html' %} 
+{% block title %}Por hacer{% endblock title %}
+{% block content %}
+<!-- Fila 1 -->
+<div class="row">
+  <div class="col-md-12">
+    <h1 class="text-center">Esta pagina aun no existe :(</h1>
   </div>
-  <br>
-  <!-- Fila 2 -->
-  <div class="row">
-    <div class="promotion col-md-12 ">
-      <h5 style="color: black">Vuelve a nuestra pagina principal para seguir explorando lo mejor para tu mascota :)</h5>
-      <br>
-      <a href="{% url 'index' %}" class="btn btn-secondary">Inicio</a>
-    </div>
-  </div>
+</div>
+<br />
+<!-- Fila 2 -->
+<div class="row">
+  <div class="promotion col-md-12">
+    <h5 style="color: black">
+      Vuelve a nuestra pagina principal para seguir explorando lo mejor para tu
+      mascota :)
+    </h5>
+    <br />
+    <a href="{% url 'index' %}" class="btn btn-secondary">Inicio</a>
   </div>
 </div>
 {% endblock %}

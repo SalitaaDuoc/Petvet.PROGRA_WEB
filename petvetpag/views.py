@@ -8,3 +8,7 @@ def index(request):
 def porhacer(request):
     context = {}
     return render(request, 'petvetpag/porhacer.html')
+
+def tienda(request):
+    context = {}
+    return render(request, 'petvetpag/tienda.html')
