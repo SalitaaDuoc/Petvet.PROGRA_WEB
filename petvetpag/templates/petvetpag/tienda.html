@@ -8,34 +8,23 @@
 </div>
 <!-- Fila 2 -->
 <div class="row">
-  <div class="col-md-4">
-    <h2>¡Explora!</h2>
-    <hr />
-    <a href="{% url 'porhacer' %}" class="btn btn-primary btn-block"
-      >Comida de animales</a
-    >
-    <hr />
-    <a href="{% url 'porhacer' %}" class="btn btn-primary btn-block"
-      >Juguetes de animales</a
-    >
-    <hr />
-    <a href="{% url 'porhacer' %}" class="btn btn-primary btn-block"
-      >Accesorios para animales</a
-    >
-    <hr />
-    <a href="{% url 'porhacer' %}" class="btn btn-primary btn-block"
-      >Servicio de veterinaria</a
-    >
-    <hr />
+  {% for producto in productos%}
+  <div class="col-md-3 mb-4">
+    <div class="card">
+      <img
+        src="{{ producto.image.url }}"
+        class="card-img-top"
+        alt="{{ producto.name }}"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ producto.name }}</h5>
+        <p class="card-text">Precio: ${{ producto.price }}</p>
+        <p class="card-text">Stock: {{ producto.stock }}</p>
+        <p class="card-text">Categoría: {{ producto.category.name }}</p>
+      </div>
+    </div>
   </div>
-  <div class="promotion col-md-8">
-    <h2>Promociones Especiales</h2>
-    <h6 style="color: black">
-      Registrate y recibe ofertas y descuentos en nuestros servicios.
-    </h6>
-    <br />
-    <a href="{% url 'porhacer' %}" class="btn btn-secondary">Registrarse</a>
-  </div>
+  {% endfor %}
 </div>
 
 {% endblock %}
