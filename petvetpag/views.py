@@ -30,10 +30,9 @@ def product_create(request):
             form.save()
             form = productForm()
             context['message'] = "Guardado exitosamente"
-            context['form'] = form
         else:
             print('---------------------------Formulario invalido'+str(form.errors))
-            context['message'] = "Formulario invalido"
+            context['message'] = "Formulario invalido"+str(form.errors)
     else:
         print('---------------------------Se llego a get')
         context['message'] = "No se ha registrado ningun producto"
@@ -42,6 +41,25 @@ def product_create(request):
 
 def product_update(request, id):
     context = {}
+    try:
+        producto = product.objects.get(id=id)
+        if request.method == 'POST':
+            #print('----------------------------Se llego a post')
+            form = productForm(request.POST, request.FILES, instance=producto)
+            if form.is_valid():
+                #print('---------------------------Formulario valido')
+                form.save()
+                form = productForm()
+                context['message'] = f"Producto '{producto.name}' actualizado exitosamente"
+            else:
+                print('---------------------------Formulario invalido'+str(form.errors))
+                context['message'] = "Formulario invalido"+str(form.errors)
+        else:
+            print('---------------------------Se llego a get')
+            context['message'] = "No se ha actualizado ningun producto"
+    except:
+        context['message'] = "Producto no encontrado"
+
     return tienda(request, context)
 
 def product_delete(request, id):
@@ -50,7 +68,7 @@ def product_delete(request, id):
         producto = product.objects.get(id=id)
         auxProName = producto.name
         producto.delete()
-        context['message'] = "Producto '{auxProName}' eliminado"
+        context['message'] = f"Producto '{auxProName}' eliminado"
     except:
         context['message'] = "Producto no encontrado"
     return tienda(request, context)

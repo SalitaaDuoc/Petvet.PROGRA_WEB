@@ -38,15 +38,11 @@
             class="btn btn-primary"
             >Editar</a
           >
-          <button
-            class="btn btn-danger btnProducto-delete"
-            data-bs-toggle="modal"
-            data-bs-target="#confirmDeleteModal"
-            data-bs-id="{{ product.id }}"
-            data-bs-name="{{ product.name }}"
+          <a
+            href="{% url 'product_delete' id=producto.id %}"
+            class="btn btn-primary"
+            >Editar</a
           >
-            Borrar
-          </button>
         </div>
         <!-- Fin de solo visible para superusuario -->
       </div>
@@ -131,31 +127,4 @@
   </div>
 </div>
 <!-- Fin de modal para confirmar eliminacion-->
-{% endblock %}
-{% block js %}
-<script>
-  $(document).ready(function() {
-    // Cuando se hace clic en cualquier botón que tenga la clase 'btn-danger'
-    $('.btnProducto-delete').click(function() {
-      // Extrae los datos del producto
-      var productId = $(this).attr('data-bs-id');
-      var productName = $(this).attr('data-bs-name');
-
-      // Actualiza el contenido del modal
-      $('#product-name').text(productName);
-      
-      // Actualiza el botón de confirmación para incluir el ID del producto en su atributo 'data-bs-id'
-      $('#confirmDeleteButton').attr('data-bs-id', productId);
-    });
-
-    // Manejar la confirmación de eliminación
-    $('#confirmDeleteButton').click(function() {
-      var productId = $(this).attr('data-bs-id');
-      // Aquí puedes agregar la lógica para eliminar el producto, como una solicitud AJAX a tu backend
-      
-      // Después de eliminar, puedes cerrar el modal manualmente
-      $('#confirmDeleteModal').modal('hide');
-    });
-  });
-</script>
 {% endblock %}
