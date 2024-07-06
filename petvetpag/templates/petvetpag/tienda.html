@@ -40,15 +40,15 @@
           >
           <a
             href="{% url 'product_delete' id=producto.id %}"
-            class="btn btn-primary"
-            >Editar</a
+            class="btn btn-danger"
+            >Borrar</a
           >
         </div>
-        <!-- Fin de solo visible para superusuario -->
       </div>
     </div>
   </div>
   {% endfor %}
+  <!-- Fin de solo visible para superusuario -->
 </div>
 <!-- Modal para crear, solo debe existir para superusuario-->
 <div
@@ -112,7 +112,8 @@
       </div>
       <div class="modal-body">
         <p>
-          Estas seguro que deseas borrar <strong id="product-name"></strong>?
+          Estas seguro que deseas borrar
+          <strong id="product-name"></strong>?
         </p>
       </div>
       <div class="modal-footer">

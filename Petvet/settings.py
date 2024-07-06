@@ -24,7 +24,10 @@ SECRET_KEY = 'django-insecure-1_pl_#75ubc-fz2f-$+qd#0befjprdpc7y2bqzad(0gs+b9+vf
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '192.168.1.105',
+    'petvet',
+]
 
 
 # Application definition
@@ -119,7 +122,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-#Media files
+# Media files
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
 

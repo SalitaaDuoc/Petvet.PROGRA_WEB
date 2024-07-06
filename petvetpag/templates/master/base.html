@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -128,6 +129,21 @@
     </header>
 
     <main>
+      {% if message %}
+      <div
+        id="mensaje-temporal"
+        class="alert alert-info alert-dismissible fade show"
+        role="alert"
+      >
+        {{ message }}
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+      {% endif %}
       <div class="body-content container">
         {% block content %} {% endblock %}
       </div>
@@ -140,7 +156,7 @@
             <h5>Contacto</h5>
             <ul class="list-unstyled">
               <li>Dirección: Calle Falsa 123, Ciudad, País</li>
-              <li>Teléfono: +123 456 7890</li>
+              <li>Teléfono: +123 9456 7890</li>
               <li>Email: contacto@petvet.com</li>
             </ul>
           </div>
@@ -168,6 +184,16 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <script>
+      var obj = new bootstrap.Alert(
+        document.getElementById("mensaje-temporal")
+      );
+      var alertNode = document.getElementById("mensaje-temporal");
+      var alert = bootstrap.Alert.getInstance(alertNode);
+      setTimeout(() => {
+        alert.close();
+      }, 5000);
+    </script>
     {% block js %}{% endblock js %}
   </body>
 </html>

@@ -2,25 +2,32 @@ from django.shortcuts import render
 from .models import product
 from .forms import productForm
 
-# Create your views here.
-def index(request):
-    context = {}
-    return render(request, 'petvetpag/index.html')
+# Views paginas ------------------------------------------------------------
+def index(request, context={}):
+    context.update({
 
-def porhacer(request):
-    context = {}
-    return render(request, 'petvetpag/porhacer.html')
+    })
+    return render(request, 'petvetpag/index.html', context)
 
-#Crud productos (Tienda)
+def porhacer(request, context={}):
+    context.update({
+        'message': 'Mensaje de prueba para por hacer',
+    })
+    return render(request, 'petvetpag/porhacer.html', context)
+
 def tienda(request, context={}):
     productos = product.objects.all()
-    context = {
+    context.update({
         'productos': productos,
-        'form': productForm()}
+        'form': productForm()})
     return render(request, 'petvetpag/tienda.html', context)
+# Fin views paginas --------------------------------------------------------
 
-def product_create(request):
-    context = {}
+# Crud productos (Tienda) --------------------------------------------------
+def product_create(request, context={}):
+    context.update({
+
+    })
 
     if request.method == 'POST':
         print('----------------------------Se llego a post')
@@ -29,7 +36,7 @@ def product_create(request):
             print('---------------------------Formulario valido')
             form.save()
             form = productForm()
-            context['message'] = "Guardado exitosamente"
+            context['message'] = "Producto guardado exitosamente"
         else:
             print('---------------------------Formulario invalido'+str(form.errors))
             context['message'] = "Formulario invalido"+str(form.errors)
@@ -39,8 +46,11 @@ def product_create(request):
 
     return tienda(request, context)
 
-def product_update(request, id):
-    context = {}
+def product_update(request, id, context={}):
+    context.update({
+
+    })
+
     try:
         producto = product.objects.get(id=id)
         if request.method == 'POST':
@@ -62,8 +72,11 @@ def product_update(request, id):
 
     return tienda(request, context)
 
-def product_delete(request, id):
-    context = {}
+def product_delete(request, id, context={}):
+    context.update({
+
+    })
+    
     try:
         producto = product.objects.get(id=id)
         auxProName = producto.name
@@ -72,3 +85,4 @@ def product_delete(request, id):
     except:
         context['message'] = "Producto no encontrado"
     return tienda(request, context)
+# Fin Crud productos (Tienda) -----------------------------------------------
